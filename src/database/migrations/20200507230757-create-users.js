@@ -18,7 +18,8 @@ module.exports = {
         },
         email: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
+          unique: true
         },
         password_hash: {
           type: DataTypes.STRING,
@@ -59,6 +60,9 @@ module.exports = {
           type: DataTypes.BOOLEAN,
           allowNull: false
         },
+        status: {
+          type: DataTypes.STRING
+        },
         admin: {
           type: DataTypes.BOOLEAN,
           allowNull: false,
@@ -78,4 +82,5 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
       return queryInterface.dropTable('users');
   }
+
 };
