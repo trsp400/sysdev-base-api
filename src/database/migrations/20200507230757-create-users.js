@@ -27,7 +27,8 @@ module.exports = {
         },
         cpf: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
+          unique: true
         },
         data_nascimento: {
           type: DataTypes.STRING,          
@@ -35,14 +36,18 @@ module.exports = {
         telefone: {
           type: DataTypes.STRING,
           allowNull: false
-        },        
+        }, 
+        celular: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
         endereco: {
           type: DataTypes.STRING,
           allowNull: false
         },
         numero: {
-          type: DataTypes.INTEGER,
-          allowNull: true
+          type: DataTypes.STRING,
+          allowNull: false
         },
         bairro: {
           type: DataTypes.STRING,
@@ -50,7 +55,7 @@ module.exports = {
         },
         complemento: {
           type: DataTypes.STRING,
-          allowNull: true
+          allowNull: false
         },
         cep: {
           type: DataTypes.STRING,
@@ -61,7 +66,8 @@ module.exports = {
           allowNull: false
         },
         status: {
-          type: DataTypes.STRING
+          type: DataTypes.STRING,
+          allowNull: false
         },
         admin: {
           type: DataTypes.BOOLEAN,
