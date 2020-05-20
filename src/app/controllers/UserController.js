@@ -87,13 +87,25 @@ class UserController {
         return res.json( {id, name, admin} );
     }
 
-    async show( req, res) {
+    async index( req, res) {
 
-        const user = await User.findAll({ where: { admin: 0 } });
+        const userAdmin = await User.findByPk( req.userId );
+        
+        if ( userAdmin.admin === false )
+        {
+            const user = await User.findAll({ where: { admin: false } });
+            console.log("false 1: " + userAdmin.admin );
+            return res.json(user);            
 
-        return res.json(user);
+        } 
+        else {
+            
+            const user = await User.findAll();
+            console.log( "false 2: " + userAdmin.admin );
+            return res.json(user);            
+        }
+        
     }
-
 }
 
 export default new UserController();

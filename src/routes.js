@@ -16,7 +16,7 @@ routes.post('/');
 routes.post('/sessions', SessionController.store);  // create session/login
 routes.post('/users', UserController.store);        // create user
 routes.put('/users',userAuth, UserController.update); // edit user
-routes.get('/users',userAuth, UserController.show); // edit user
+routes.get('/users',userAuth, UserController.index); // edit user
 
 //files
 routes.post('/files',upload.single('file'), FileController.store);
