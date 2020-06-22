@@ -4,7 +4,7 @@ API for the app embaixada do bem, for a nonprofit donation group, to help regist
 1.  **Important Information about the project**
 - API being developed with NodeJs and Express
 - Using sequelize as ORM for queries
-- Database to be used is MySQL from Umbler
+- Database used: is MySQL
 - Node version: v13.12.0
 
 #### Author: Thiago Robles
