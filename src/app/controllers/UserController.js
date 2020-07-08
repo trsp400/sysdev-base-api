@@ -1,4 +1,5 @@
 import User from '../models/User';
+import File from '../models/File';
 
 import * as Yup from 'yup';
 
@@ -17,7 +18,8 @@ class UserController {
             bairro: Yup.string().notRequired(),
             complemento: Yup.string().notRequired(),
             cep: Yup.string().required(),
-            recebe_auxilio: Yup.boolean().required(),
+            quantidade_acesso: Yup.number().notRequired(),
+            recebe_bolsa: Yup.boolean().notRequired(),
             admin: Yup.boolean().required(),
         });
 
@@ -53,10 +55,16 @@ class UserController {
             password: Yup.string().min(6).when('oldPassword', (oldPassword, field) => oldPassword ? field.required() : field),
             confirmPassword: Yup.string().when( 'password', (password, field) => password ? field.required().oneOf([Yup.ref('password')]) : field ),
             endereco: Yup.string().notRequired(),
-            numero: Yup.number().notRequired(),
             bairro: Yup.string().notRequired(),
             complemento: Yup.string().notRequired(),
+            numero: Yup.number().notRequired(),
+            cep: Yup.string().notRequired(),
+            admin: Yup.bool().notRequired(),
+            bairro: Yup.string().notRequired(),
+            avatar_id: Yup.string().notRequired(),
+            complemento: Yup.string().notRequired(),
         });
+        // console.log(req.body);
 
         if( !(await schema.isValid(req.body))) 
         {
@@ -64,9 +72,8 @@ class UserController {
         }
 
         const { email, oldPassword } = req.body;
-
         const user = await User.findByPk( req.userId );
-
+        
         if (email && email !== user.email )
         {
             const userExists = await User.findOne({ where: { email } });
@@ -89,17 +96,23 @@ class UserController {
 
     async index( req, res) {
 
+        const user = await User.findByPk( req.userId );
+        
+        return res.json(user);    
+        
+        
+    }
+    async show( req, res) {
+
         const userAdmin = await User.findByPk( req.userId );
         
         if ( userAdmin.admin === false )
         {
-            const user = await User.findAll({ where: { admin: false } });
-            console.log("false 1: " + userAdmin.admin );
+            const user = userAdmin;
             return res.json(user);            
 
         } 
-        else {
-            
+        else {            
             const user = await User.findAll();
             console.log( "false 2: " + userAdmin.admin );
             return res.json(user);            

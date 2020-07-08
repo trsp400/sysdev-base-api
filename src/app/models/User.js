@@ -18,8 +18,9 @@ class User extends Model {
             bairro: Sequelize.STRING,
             complemento: Sequelize.STRING,
             cep: Sequelize.STRING,
+            quantidade_acesso: Sequelize.INTEGER,
             status: Sequelize.STRING,
-            recebe_auxilio: Sequelize.BOOLEAN,
+            recebe_bolsa: Sequelize.BOOLEAN,
             admin: Sequelize.BOOLEAN,
             avatar_id: Sequelize.INTEGER
         },

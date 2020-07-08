@@ -61,9 +61,14 @@ module.exports = {
           type: DataTypes.STRING,
           allowNull: false
         },
-        recebe_auxilio: {
+        recebe_bolsa: {
           type: DataTypes.BOOLEAN,
           allowNull: false
+        },
+        quantidade_acesso: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0
         },
         status: {
           type: DataTypes.STRING,

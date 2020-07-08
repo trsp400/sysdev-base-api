@@ -43,9 +43,12 @@ class SessionController {
             bairro,
             complemento,
             cep,
-            recebe_axuilio,
+            quantidade_acesso,
+            recebe_bolsa,
             admin
         } = user;
+
+        console.log(user)
 
         return res.json({
             user,
