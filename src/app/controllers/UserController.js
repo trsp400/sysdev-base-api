@@ -50,11 +50,13 @@ class UserController {
 
         const schema = Yup.object().shape({
             name: Yup.string().notRequired(),
-            email: Yup.string().email(),
-            oldPassword: Yup.string().min(6),
+            email: Yup.string().email().notRequired(),
+            oldPassword: Yup.string().min(6).notRequired(),
             password: Yup.string().min(6).when('oldPassword', (oldPassword, field) => oldPassword ? field.required() : field),
             confirmPassword: Yup.string().when( 'password', (password, field) => password ? field.required().oneOf([Yup.ref('password')]) : field ),
             endereco: Yup.string().notRequired(),
+            telefone: Yup.string().notRequired(),
+            celular: Yup.string().notRequired(),
             bairro: Yup.string().notRequired(),
             complemento: Yup.string().notRequired(),
             numero: Yup.number().notRequired(),
@@ -84,10 +86,13 @@ class UserController {
             }
         }
         
-        if ( !(await user.checkPassword(oldPassword)))
-        {
-            return res.status(401).json({ error: "Senha Incorreta!" });
+        if (oldPassword) {
+            if ( !(await user.checkPassword(oldPassword)))
+            {
+                return res.status(401).json({ error: "Senha Incorreta!" });
+            }
         }
+        
 
         const { id, name, admin } = await user.update(req.body);
 
