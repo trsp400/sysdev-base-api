@@ -1,5 +1,5 @@
-# embaixada-do-bem-api
-API for the app embaixada do bem, for a nonprofit donation group, to help register who received the food package and control food stock.
+# Sysdev base API
+API of my personal base project. In this api you can find most common Nodejs use cases, using Controller-Model pattern.
 
 1.  **Important Information about the project**
 - API being developed with NodeJs and Express
